@@ -10,30 +10,30 @@ class ConjugateGradient {
 
         Vector v = new Vector(2, 1);
         Vector grad = func.grad(v);
-        Vector anti_grad = grad.multiply(-1);
+        Vector anti_grad = grad.multiplyV(-1);
         Vector direction_previous = anti_grad;
         Vector direction_current;
 
         double epsilon = 0.0001;
         while (func.grad(v).getNorm() > epsilon) {
-            anti_grad = func.grad(v).multiply(-1);
+            anti_grad = func.grad(v).multiplyV(-1);
             //ортогонализация Грама-Шмидта
             if (i == 1) {
                 //первый вектор ортогон-ть не нужно
                 direction_current = anti_grad;
             } else {
                 //коэффициент для ортогонализации (x,y)/(y,y)
-                beta = (anti_grad.skalm(anti_grad)) / (direction_previous.skalm(direction_previous));
+                beta = (anti_grad.skalmul(anti_grad)) / (direction_previous.skalmul(direction_previous));
                 //найдем направление спуска g = x - beta*y
-                direction_current = anti_grad.substract(direction_previous.multiply(beta));
+                direction_current = anti_grad.substractV(direction_previous.multiplyV(beta));
                 //System.out.println("Новое напрвление: " + direction_current.represent());
             }
             do {
                 double middle = (a + b) / 2;
                 x1 = middle - 0.0005;
                 x2 = middle + 0.0005;
-                double i1 = func.val(v.add(direction_current.multiply(x1)));
-                double i2 = func.val(v.add(direction_current.multiply(x2)));
+                double i1 = func.val(v.addV(direction_current.multiplyV(x1)));
+                double i2 = func.val(v.addV(direction_current.multiplyV(x2)));
                 if (i1 < i2) {
                     b = x2;
                 } else {
@@ -41,7 +41,7 @@ class ConjugateGradient {
                 }
             } while (Math.abs(b - a) > epsilon);
             alpha = (a + b) / 2;
-            v = v.add(direction_current.multiply(alpha));
+            v = v.addV(direction_current.multiplyV(alpha));
             direction_previous = direction_current;
             //System.out.println("k = " + iter + " Точка: " + v.represent() + " Значение: " + ros.getValue(v));
             i++;

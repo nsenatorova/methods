@@ -63,7 +63,7 @@ class NelderMead {
                 if (func.val(xr) < func.val(w)) {
                     w = xr;
                 }
-                Vector c = w.add(mid).multiply(0.5);
+                Vector c = w.addV(mid).multiplyV(0.5);
                 if (func.val(c) < func.val(w)) {
                     w = c;
                 }

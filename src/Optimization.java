@@ -11,6 +11,7 @@ public class Optimization {
         NelderMead nd = new NelderMead();
         GradientDescent gd = new GradientDescent();
         ConjugateGradient cg = new ConjugateGradient();
+        QuasiNewtonian qn = new QuasiNewtonian();
 
         System.out.println("Одномерная оптимизация:");
         System.out.println("a = ");
@@ -34,11 +35,11 @@ public class Optimization {
         double b1 = s.nextDouble();
         RosenbrockFunc ros = new RosenbrockFunc(a1, b1);
         System.out.println("Метод Нелдера-Мида для ф-ции Розенброка:");
-        System.out.println(nd.nelderMead(10,ros).represent());
+        System.out.println(nd.nelderMead(10,ros).repr());
         System.out.println("Метод градиентного спуска для ф-ции Розенброка:");
-        System.out.println(gd.gradientDescent(v,ros).represent());
-        System.out.println("Метод сопряженных градиентов для ф-ции Розенброка:");
-        System.out.println(cg.conjugateGrad(ros).represent());
+        System.out.println(gd.gradientDescent(v,ros).repr());
+        System.out.println("Квазиньютоновский метод для ф-ции Розенброка:");
+        System.out.println(qn.quasiNewtonian(v,ros).repr());
 
 
         System.out.println("Ф-ция Химмельблау");
@@ -48,11 +49,13 @@ public class Optimization {
         double b2 = s.nextDouble();
         HimmelblauFunc him = new HimmelblauFunc(a2,b2);
         System.out.println("Метод Нелдера-Мида для ф-ции Химмельблау:");
-        System.out.println(nd.nelderMead(100,him).represent());
+        System.out.println(nd.nelderMead(100,him).repr());
         System.out.println("Метод градиентного спуска для ф-ции Химмельблау:");
-        System.out.println(gd.gradientDescent(v,him).represent());
-        System.out.println("Метод сопряженных градиентов для ф-ции Розенброка:");
-        System.out.println(cg.conjugateGrad(him).represent());
+        System.out.println(gd.gradientDescent(v,him).repr());
+        System.out.println("Квазиньютоновский метод для ф-ции Химмельблау:");
+        System.out.println(qn.quasiNewtonian(v,him).repr());
+        System.out.println("Метод сопряженных градиентов для ф-ции Химмельблау:");
+        System.out.println(cg.conjugateGrad(him).repr());
 
     }
 }

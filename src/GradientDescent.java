@@ -14,8 +14,8 @@ class GradientDescent {
                 mid = (a + b) / 2;
                 x1 = mid - delta;
                 x2 = mid + delta;
-                double i1 = func.val(v.substract(grad.multiply(x1)));
-                double i2 = func.val(v.substract(grad.multiply(x2)));
+                double i1 = func.val(v.substractV(grad.multiplyV(x1)));
+                double i2 = func.val(v.substractV(grad.multiplyV(x2)));
                 if (i1 < i2) {
                     b = x2;
                 } else {
@@ -23,7 +23,7 @@ class GradientDescent {
                 }
             } while (Math.abs(b - a) > epsilon);
             lambda = (a + b) / 2;
-            v = v.substract(grad.multiply(lambda));
+            v = v.substractV(grad.multiplyV(lambda));
             grad = func.grad(v);
         }
         return v;
