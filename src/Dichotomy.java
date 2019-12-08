@@ -24,9 +24,10 @@ class Dichotomy {
                 l = x;
             }
         }
-        System.out.println(i + " iterations");
+        System.out.println(i + " итераций");
         x = (r + l) / 2;
-        System.out.println("x =" + x);
+        System.out.println("x = " + x);
         return a * x + b / (exp(x));
     }
 }
+
