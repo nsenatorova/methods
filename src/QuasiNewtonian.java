@@ -16,7 +16,7 @@ class QuasiNewtonian {
         double x1, x2, alpha;
         double a = 0;
         double b = 10;
-        double eps = 0.0011;
+        double eps = 0.0001;
         while (func.grad(v0).getNorm()> eps){
             grad = func.grad(v0);
             dir = Vector.multiplyMV(H0,grad.multiplyV(-1));
