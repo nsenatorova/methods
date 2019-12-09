@@ -1,10 +1,12 @@
 package ru.spbu.apmath.prog.methods;
 
+
 class GradientDescent {
 
     Vector gradientDescent(Vector v, Func func) {
         Vector grad = func.grad(v);
         double epsilon = 0.0011;
+        int i = 0;
         while (grad.getNorm() > epsilon) {
             double lambda, x1, x2, mid;
             double a = 0;
@@ -25,7 +27,9 @@ class GradientDescent {
             lambda = (a + b) / 2;
             v = v.substractV(grad.multiplyV(lambda));
             grad = func.grad(v);
+            i++;
         }
+        System.out.println(i + " итераций");
         return v;
     }
 }
