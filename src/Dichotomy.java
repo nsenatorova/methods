@@ -9,13 +9,13 @@ class Dichotomy {
         double x;
         double l = -1000;
         double r = 1000;
-        double delta = 0.0000001;
-        double epsilon = 2 * delta + 0.0000001;
+        double del = 0.0000001;
+        double epsilon = 2 * del + 0.0000001;
         while (abs((r - l)) >= epsilon) {
             i++;
             x = (r + l) / 2;
-            double x1 = x - delta;
-            double x2 = x + delta;
+            double x1 = x - del;
+            double x2 = x + del;
             double f1 = a * x1 + b / (exp(x1));
             double f2 = a * x2 + b / (exp(x2));
             if (f1 < f2) {
@@ -30,4 +30,3 @@ class Dichotomy {
         return a * x + b / (exp(x));
     }
 }
-
