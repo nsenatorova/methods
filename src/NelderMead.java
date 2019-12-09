@@ -3,9 +3,9 @@ package ru.spbu.apmath.prog.methods;
 class NelderMead {
 
     Vector nelderMead(int maxIter, Func func) {
-        Vector v1 = new Vector(1, 0);
+        Vector v1 = new Vector(1, 1);
         Vector v2 = new Vector(0, 0);
-        Vector v3 = new Vector(0, 1);
+        Vector v3 = new Vector(1, -1);
 
         Vector w = null;
         Vector g = null;
@@ -57,7 +57,6 @@ class NelderMead {
             Vector xr = new Vector((mid.x + alpha * (mid.x - w.x)), (mid.y + alpha * (mid.y - w.y)));
 
             if (func.val(xr) < func.val(g)) {
-                //отражение
                 w = xr;
             } else {
                 if (func.val(xr) < func.val(w)) {
@@ -70,7 +69,6 @@ class NelderMead {
             }
 
             if (func.val(xr) < func.val(b)) {
-                //расширение
                 Vector xe = new Vector((mid.x + gamma * (xr.x - mid.x)), (mid.y + gamma * (xr.y - mid.y)));
                 if (func.val(xe) < func.val(xr)) {
                     w = xe;
@@ -79,7 +77,6 @@ class NelderMead {
                 }
             }
             if (func.val(xr) < func.val(g)) {
-                //контракция
                 Vector xc = new Vector((mid.x + beta * (w.x - mid.x)), (mid.y + beta * (w.y - mid.y)));
                 if (func.val(xc) < func.val(w)) {
                     w = xc;
